@@ -1,11 +1,81 @@
-nav ul{
-    position: inherit;
-    top: 10;
-    left: 10;
-    width: 120%;
+h1 {
+    color: rgb(13, 19, 80);
+    background-color: rgb(221, 6, 6);
+    margin: 40px;
+    margin-top: 60px;
+    padding: 25px;
+    text-align: center;
+}
+
+body{
+    background-color: rgb(13, 19, 80);
+}
+
+nav ul {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     list-style-type: none;
     margin: 0;
     padding: 0;
+    background-color: rgb(221, 6, 6);
+}
+
+nav ul li {
+    float: left;
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px;
+    background-color: rgb(221, 6, 6);
+    color: rgb(0, 0, 0)
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: rgb(13, 19, 80);
+    color: aliceblue;
+}
+
+.bord {
+    border-style: outset;
+    border-width: 10px;
+    border-color: rgb(221, 6, 6);
+    display: block;
+    margin: 0 auto 0 auto;
+    padding: 10px;
+    height: 300px;
+    width: 500px;
+}
+
+.wtext {
+    color: aliceblue;
+}
+.wtext_cent {
+    color: aliceblue;
     text-align: center;
-    color: rgb(255, 30, 30);
+}
+
+.left {
+    display: block;
+    margin-left: 100%;
+}
+
+.top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+  }
+
+.right {
+    display: block;
+    margin: 100 100 0 0; 
+}
+
+.height {
+    line-height: 3.2;
+    color: aliceblue;
+    text-align: center;
 }
