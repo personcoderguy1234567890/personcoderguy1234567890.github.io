@@ -80,10 +80,10 @@ function leftArmScanner() {
 }
 
 function rightLegScanner() {
-	if (keyIsPressed && (key === "x")) {
-  	translate(x, y + 150);
-  	rotate(dx * mouseX , 3);
-	}
+  if (keyIsPressed && (key === "x")) {
+    translate(x, y + 150);
+    rotate(dx * mouseX , 3);
+  }
   else {
     translate(x - 15, y + 150);
   }
@@ -102,8 +102,8 @@ function leftLegScanner() {
 
 function bodyScanner() {
 	if (keyIsPressed && (key === "s")) {
-  	translate(x, y + 75);
-  	rotate(dx * mouseX , 3);
+    translate(x, y + 75);
+    rotate(dx * mouseX , 3);
 	}
   else {
     translate(x, y + 75);
