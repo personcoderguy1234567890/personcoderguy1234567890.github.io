@@ -13,13 +13,16 @@
 
 // Setting up global variables
 let colorList; 
-let state = "menu";
+let state;
 let x = 200;
 let y = 125;
 let angle = 90;
 let dx = 0.2;
 let buttonX, buttonY, buttonHeight, buttonWidth;
 let secondButtonYpos;
+let font;
+let fontsize;
+
 
 // Making a canvas and list of global colors
 function setup() {
@@ -35,6 +38,10 @@ function setup() {
   buttonHeight = 200;
   buttonWidth = 400;
   secondButtonYpos = buttonY - buttonHeight - 50;
+  fontsize = 40;
+  textFont(font);
+  textSize(fontsize);
+  textAlign(CENTER, CENTER);
 }
 // The draw function calls the functions that need
 // to be drawn with the sensors and stores the 
@@ -53,8 +60,9 @@ function draw() {
 }
 
 function howToPlay() {
-  background(130);
+  background(colorList[1]);
   
+  fill(colorList[0]);
   textAlign(CENTER, CENTER);
   textFont("Helvetica");
   text("How To Play");
@@ -66,27 +74,33 @@ function howToPlay() {
 }
 
 function dancingBlock() {
-  background(220);
+  background(255);
+  
   push();
   headScanner();
   head();
   pop();
+  
   push();
   rightArmScanner();
   rightArm();
   pop();
+  
   push();
   leftArmScanner();
   leftArm();
   pop();
+  
   push();
   bodyScanner();
   body();
   pop();
+  
   push();
   rightLegScanner();
   rightLeg();
   pop();
+  
   push();
   leftLegScanner();
   leftLeg();
@@ -101,15 +115,15 @@ function showMenu() {
   rect(buttonX, buttonY, buttonWidth, buttonHeight);
   
   textAlign(CENTER, CENTER);
-  fill(colorList[5])
-  text("The Dancing Block", buttonX, buttonY);
+  fill(colorList[5]);
+  text("How to Play", buttonX, buttonY);
 
   fill(colorList[3]);
   rect(buttonX, secondButtonYpos, buttonWidth, buttonHeight);
   
   textAlign(CENTER, CENTER);
   fill(colorList[4]);
-  text("How to Play", buttonX, secondButtonYpos);
+  text("Dancing Block", buttonX, secondButtonYpos);
   
 }
  
@@ -119,7 +133,7 @@ function mousePressed() {
       state = "dancing";
     }
     if (isHowToClicked(mouseX, mouseY)) {
-      state = "Howto";
+      state = "howToPlay";
     }
   }
 }
