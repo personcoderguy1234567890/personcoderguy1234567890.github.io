@@ -22,6 +22,7 @@ let buttonX, buttonY, buttonHeight, buttonWidth;
 let secondButtonYpos;
 let font;
 let fontsize;
+let InstructionsHeight;
 
 
 // Making a canvas and list of global colors
@@ -39,9 +40,9 @@ function setup() {
   buttonWidth = 400;
   secondButtonYpos = buttonY - buttonHeight - 50;
   fontsize = 40;
-  textFont(font);
-  textSize(fontsize);
-  textAlign(CENTER, CENTER);
+  InstructionsHeight
+  InstructionsHeight = 100;
+
 }
 // The draw function calls the functions that need
 // to be drawn with the sensors and stores the 
@@ -60,18 +61,29 @@ function draw() {
 }
 
 function howToPlay() {
-  background(colorList[1]);
-  
-  fill(colorList[0]);
-  textAlign(CENTER, CENTER);
-  textFont("Helvetica");
-  text("How To Play");
+  background(colorList[0]);
 
+  // Align the text to the right
+  // and run drawWords() in the left third of the canvas
   textAlign(LEFT);
-  textFont("Georgia");
-  text("How To Play");
+  Instructions();
+
 
 }
+
+function Instructions() {
+  InstructionsHeight += 50;
+
+  textAlign(CENTER);
+  fill(colorList[2]);
+  text("How to Play", windowWidth/2, InstructionsHeight);
+
+  textAlign(LEFT);
+  fill(colorList[4]);
+  text("Hold W and move mouse horizontally to move the head of the block", 100, 150);
+
+}
+
 
 function dancingBlock() {
   background(255);
