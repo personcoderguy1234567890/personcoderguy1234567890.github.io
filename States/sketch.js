@@ -1,15 +1,8 @@
-// Project Title
-// Your Name
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
-
 
 // Raamish Humayun
 // Computer Science 30
-// March 13, 2019
-// Interactive Scene
+// April 3, 2019
+// Sates Assignment
 
 // Setting up global variables
 let colorList; 
@@ -23,6 +16,7 @@ let secondButtonYpos;
 let font;
 let fontsize;
 let InstructionsHeight;
+let emptyInstructionsHeight;
 
 
 // Making a canvas and list of global colors
@@ -40,8 +34,6 @@ function setup() {
   buttonWidth = 400;
   secondButtonYpos = buttonY - buttonHeight - 50;
   fontsize = 40;
-  InstructionsHeight
-  InstructionsHeight = 100;
 
 }
 // The draw function calls the functions that need
@@ -56,35 +48,28 @@ function draw() {
     dancingBlock();
   }
   if (state === "howToPlay") {
-    howToPlay();
+    Instructions();
   } 
 }
 
-function howToPlay() {
-  background(colorList[0]);
 
-  // Align the text to the right
-  // and run drawWords() in the left third of the canvas
-  textAlign(LEFT);
-  Instructions();
-
-
-}
-
+// This is where the instructions are written for How to Play
 function Instructions() {
-  InstructionsHeight += 50;
-
+  background(colorList[0]);
+  
+  textSize(100);
   textAlign(CENTER);
   fill(colorList[2]);
-  text("How to Play", windowWidth/2, InstructionsHeight);
+  text("How to Play", width/2, 100);
 
+  textSize(50);
   textAlign(LEFT);
   fill(colorList[4]);
-  text("Hold W and move mouse horizontally to move the head of the block", 100, 150);
-
+  text("Hold W to toggle the Head\nHold s to toggle the middle body\nHold a to toggle the right arm\nHold d to toggle the left arm\nHold z to toggle the right leg\nHold x to toggle the left leg\n\nMove the mouse horizontally to make\nthe block that's toggled dance", 150, 425); 
 }
 
-
+// Push and Pop functions make sure that when the 
+// key for a block is clicked only that block rotates
 function dancingBlock() {
   background(255);
   
@@ -138,7 +123,9 @@ function showMenu() {
   text("Dancing Block", buttonX, secondButtonYpos);
   
 }
- 
+
+// Checks to see if the state is menu and changes the according
+// state according to what button is pressed 
 function mousePressed() {
   if (state === "menu")  {
     if (isDancingClicked(mouseX, mouseY)) {
@@ -150,6 +137,7 @@ function mousePressed() {
   }
 }
 
+// Checkes to see if the How to Play button is clicked
 function isHowToClicked(x,y) {
   return  x >= buttonX - buttonWidth/2 &&
           x <= buttonX + buttonWidth/2 &&
@@ -158,6 +146,7 @@ function isHowToClicked(x,y) {
 
 }
 
+// Checkes to see if the Dancing Block button is clicked
 function isDancingClicked(x,y) {
   return x >= buttonX - buttonWidth/2 &&
          x <= buttonX + buttonWidth/2 &&
@@ -165,6 +154,9 @@ function isDancingClicked(x,y) {
          y <= secondButtonYpos + buttonHeight/2;
 }
 
+// The scanner functions senses what key is pressed and 
+// translates the coordinates of the block so that the 
+// block translates from the center of the block
 function headScanner() {
   if (keyIsPressed && (key === "w")) {
     translate(x, y);
@@ -255,7 +247,7 @@ function rightLeg() {
 function leftLeg() {
   rectMode(CENTER);
   fill(colorList[4]);
-  rect(0, 0 , 20, 50)
+  rect(0, 0 , 20, 50);
 }
 
 function leftArm() {
