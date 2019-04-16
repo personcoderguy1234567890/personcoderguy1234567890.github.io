@@ -22,28 +22,29 @@ let playerOne;
 let diceLocation = cellSize * 10;
 
 function setup() {
-  if (windowWidth > windowHeight) {
-    createCanvas(windowHeight, windowHeight);
-  }
-  else {
-    createCanvas(windowWidth, windowWidth);
-  }
+  createCanvas(windowWidth, windowHeight);
   
   grid = create2DArray(gridSize, gridSize);
-  cellSize = width/gridSize;
+  cellSize = height/gridSize;
+  for (let gridY = 1; gridY < 10; gridY ++) {
+    grid[3][2] =  1;
+  }
+
 }
 
 function draw() {
   background(255);
   displayGrid();
   dice();
-  playerOneDisciption();
+  playerOneDiscription();
 }
 
 function displayGrid() {
   for (let y = 0; y < gridSize; y++) {
     for (let x = 0; x < gridSize; x++) {
-      rect(x*cellSize, y*cellSize, cellSize, cellSize);
+      if (grid[y][x] === 0) {
+        rect(x*cellSize, y*cellSize, cellSize, cellSize);
+      }
     }
   }
 }
@@ -71,31 +72,30 @@ function preload() {
   diceOne = loadImage("assets/dice_one.png");
   playerOneImage = loadImage("assets/duck.png");
 }
-
-function playerOneDisciption() {
-  playerOne = image(emptyArray[5], emptyArray[5], cellSize, cellSize);
-
+let playerOneStarting;
+function playerOneDiscription() {
+  playerOneStarting = grid[9][1];
 
 }
 
 function dice() {
   let diceNum = 1;
   if (diceNum === 1) {
-    image(diceOne, 800, 500, 50, 50);
+    image(diceOne, 800, 800, 50, 50);
   }
   if (diceNum === 2) {
-    image(diceTwo, 0, 0, 200, 200);
+    image(diceTwo, width/2, width/2, 200, 200);
   }
   if (diceNum === 3) {
-    image(diceThree, 0, 0, 200, 200);
+    image(diceThree, width/2, width/2, 200, 200);
   }
   if (diceNum === 4) {
-    image(diceFour, 0, 0, 200, 200);
+    image(diceFour, width/2, width/2, 200, 200);
   }
   if (diceNum === 5) {
-    image(diceFive, 0, 0, 200, 200);
+    image(diceFive, width/2, width/2, 200, 200);
   }
   if (diceNum === 6) {
-    image(diceSix, 0, 0, 200, 200);
+    image(diceSix, width/2, width/2, 200, 200);
   }
 }
