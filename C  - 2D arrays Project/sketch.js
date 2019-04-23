@@ -1,5 +1,5 @@
-// Project Title
-// Your Name
+// Snakes and Ladders
+// Raamish Humayun
 // Date
 //
 // Extra for Experts:
@@ -20,6 +20,8 @@ let diceSix;
 let playerOneImage;
 let playerOne;
 let diceLocation = cellSize * 10;
+let x;
+let y;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -76,6 +78,20 @@ let playerOneStarting;
 function playerOneDiscription() {
   playerOneStarting = grid[9][1];
 
+}
+
+function convertToSingleNum(x, y) {
+  if (y % 2 === 1) {
+    singleNum = 10 * (9 - y) + (x+1);
+  }
+  else {
+    singleNum = 10 * (9-y) + (x+11);
+  }
+}
+
+function covertFromSingleNum(singleNum) {
+  x = (singleNum - 100) / 10;
+  y = 9 - ((singleNum - x - 1) / 10);
 }
 
 function dice() {
