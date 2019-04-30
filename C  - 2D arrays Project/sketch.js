@@ -19,20 +19,13 @@ let diceFive;
 let diceSix;
 let playerOneImage;
 let playerOne;
-let diceLocation = cellSize * 10;
-<<<<<<< HEAD
-let playerX, playerY;
-=======
-let x;
-let y;
->>>>>>> f91d5334dad93be596c97c5d24a9e8e2473f4392
+let singleGridNum;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   
   grid = create2DArray(gridSize, gridSize);
   cellSize = height/gridSize;
-  
   grid[9][0] = 1;
 }
 
@@ -40,25 +33,17 @@ function draw() {
   background(255);
   displayGrid();
   dice();
-  playerOneDiscription();
 }
 
 function displayGrid() {
   for (let y = 0; y < gridSize; y++) {
     for (let x = 0; x < gridSize; x++) {
-      if (y % 2 === 1) {
-        singleGridNum = 10 * (y - 9) + (x + 1);
-      }
-      else {
-        singleGridNum = 10 * (9 - y) + (x + 11);
-      } 
-      grid[y]
       if (grid[y][x] === 0) {
         rect(x*cellSize, y*cellSize, cellSize, cellSize);
       }
       // Player Ones starting position
       else if (grid[y][x] === 1) {
-        image(playerOneImage, x*cellSize, y*cellSize, cellSize, cellSize);
+        image(playerOneImage, x*cellSize, y*cellSize, cellSize/2, cellSize);
       } 
     }
   }
@@ -90,23 +75,6 @@ function preload() {
 
 let playerOneStarting;
 
-function playerOneDiscription() {
-
-}
-
-function convertToSingleNum(x, y) {
-  if (y % 2 === 1) {
-    singleNum = 10 * (9 - y) + (x+1);
-  }
-  else {
-    singleNum = 10 * (9-y) + (x+11);
-  }
-}
-
-function covertFromSingleNum(singleNum) {
-  x = (singleNum - 100) / 10;
-  y = 9 - ((singleNum - x - 1) / 10);
-}
 
 function dice() {
   let diceNum = random(6);
@@ -139,7 +107,9 @@ function covert_to_single_number(x, y) {
   } 
 }
 
+// converts 
 function convert_single_number_to_xy(singleNumber) {
+  let x = 0;
   if (100 < singleNumber < 90) {
     x = (100 - singleNumber)/10;
   }
@@ -152,26 +122,23 @@ function convert_single_number_to_xy(singleNumber) {
   if (70 < singleNumber < 60) {
     x = (100 - singleNumber)/10;
   }
-  if (50 < singleNumber < 80) {
+  if (60 < singleNumber < 50) {
     x = (100 - singleNumber)/10;
   }
-  if (90 < singleNumber < 80) {
+  if (50 < singleNumber < 40) {
     x = (100 - singleNumber)/10;
   }
-  if (90 < singleNumber < 80) {
+  if (40 < singleNumber < 30) {
     x = (100 - singleNumber)/10;
   }
-  if (90 < singleNumber < 80) {
+  if (30 < singleNumber < 20) {
     x = (100 - singleNumber)/10;
   }
-  if (90 < singleNumber < 80) {
+  if (20 < singleNumber < 10) {
     x = (100 - singleNumber)/10;
   }
-  if (90 < singleNumber < 80) {
+  if (10 < singleNumber < 0) {
     x = (100 - singleNumber)/10;
   }
-  if (90 < singleNumber < 80) {
-    x = (100 - singleNumber)/10;
-  }
-  // y = 9-(singleNum-x-1)/10
+  return x;
 }
