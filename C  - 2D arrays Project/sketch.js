@@ -11,6 +11,7 @@ let grid;
 let cellSize;
 // let autoPlay;
 
+let diceNum;
 let diceOne;
 let diceTwo;
 let diceThree;
@@ -20,19 +21,53 @@ let diceSix;
 let playerOneImage;
 let playerOne;
 let singleGridNum;
+let oldGrid;
+let newPosition;
+let y;
+let x;
+let singleNumber;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   
   grid = create2DArray(gridSize, gridSize);
   cellSize = height/gridSize;
-  grid[9][0] = 1;
 }
 
 function draw() {
   background(255);
   displayGrid();
   dice();
+  convertToXY() ;
+  convertToSingleNum();
+}
+
+function s () {
+  let startingPosition;
+  grid[y][x] = singleNumber;
+  grid[9][0] = startingPosition;
+  
+  if (diceNum === 1) {
+    singleNumber+= 1;
+  } 
+  else if (diceNum === 2) {
+    singleNumber+= 2;
+  }
+  else if (diceNum === 3) {
+    singleNumber+= 3;
+  }
+  else if (diceNum === 4) {
+    singleNumber+= 4;
+  }
+  else if (diceNum === 5) {
+    singleNumber+= 5;
+  }
+  else if (diceNum === 6) {
+    singleNumber+= 6;
+  }
+
+  singleNumber = playerOnePosition;
+  singleNumber = 0;
 }
 
 function displayGrid() {
@@ -40,13 +75,16 @@ function displayGrid() {
     for (let x = 0; x < gridSize; x++) {
       if (grid[y][x] === 0) {
         rect(x*cellSize, y*cellSize, cellSize, cellSize);
-      }
-      // Player Ones starting position
-      else if (grid[y][x] === 1) {
+      } 
+      else if (grid[y][x] === newPosition) {  
         image(playerOneImage, x*cellSize, y*cellSize, cellSize/2, cellSize);
       } 
-    }
+    } 
   }
+} 
+
+function movePlayerOne () {
+  let oldGrid = 1;
 }
 
 
@@ -77,68 +115,88 @@ let playerOneStarting;
 
 
 function dice() {
-  let diceNum = random(6);
-  if (diceNum === 1) {
-    image(diceOne, width/2, height/2, 50, 50);
+  grid[9][0] = 1;
+  
+  turns = [1, 2];  
+  
+  diceNum = random(6);
+  if (diceNum === 1) { 
+    return image(diceOne, width/2, height/2, 50, 50);
   }
   else if (diceNum === 2) {
-    image(diceTwo, width/2, height/2, 200, 200);
+    return image(diceTwo, width/2, height/2, 200, 200);
   }
   else if (diceNum === 3) {
-    image(diceThree, width/2, height/2, 200, 200);
+    newPosition = grid[y][x + 3];
+    return image(diceThree, width/2, height/2, 200, 200);
   }
   else if (diceNum === 4) {
-    image(diceFour, width/2, height/2, 200, 200);
+    return image(diceFour, width/2, height/2, 200, 200);
   }
   else if (diceNum === 5) {
-    image(diceFive, width/2, height/2, 200, 200);
+    return image(diceFive, width/2, height/2, 200, 200);
   }
   else if (diceNum === 6) {
-    image(diceSix, width/2, height/2, 200, 200);
+    return image(diceSix, width/2, height/2, 200, 200);
+  }
+
+  for (let i = 1; i < 7; i++) {
+    return image(diceOne, width/2, height/2, 50, 50);
   }
 }
 
-function covert_to_single_number(x, y) {
+function convertToSingleNum(x, y) {
   if (y % 2 === 1) {
-    return 10 * (y - 9) + (x + 1);
+    singleNumber = 10 * (y - 9) + (x + 1);
   }
   else {
-    return 10 * (9 - y) + (x + 11);
+    singleNumber = 10 * (9 - y) + (x + 11);
   } 
+  return singleNumber;
 }
 
-// converts 
-function convert_single_number_to_xy(singleNumber) {
-  let x = 0;
-  if (100 < singleNumber < 90) {
-    x = (100 - singleNumber)/10;
+
+function convertToXY(singleNumber) {
+  if (90 < singleNumber < 100) {
+    y = (100 - singleNumber)/10;
+    x = singleNumber - 111 + 10 * y;
   }
-  if (90 < singleNumber < 80) {
-    x = (100 - singleNumber)/10;
+  if (80 < singleNumber < 90) {
+    y = (100 - singleNumber)/10;
+    x = singleNumber - 91 + 10 * y;
   }
-  if (80 < singleNumber < 70) {
-    x = (100 - singleNumber)/10;
+  if (70 < singleNumber < 80) {
+    y = (100 - singleNumber)/10;
+    x = singleNumber - 111 + 10 * y;
   }
-  if (70 < singleNumber < 60) {
-    x = (100 - singleNumber)/10;
+  if (60 < singleNumber < 70) {
+    y = (100 - singleNumber)/10;
+    x = singleNumber - 91 + 10 * y;
   }
-  if (60 < singleNumber < 50) {
-    x = (100 - singleNumber)/10;
+  if (50 < singleNumber < 60) {
+    y = (100 - singleNumber)/10;
+    x = singleNumber - 111 + 10 * y;
   }
-  if (50 < singleNumber < 40) {
-    x = (100 - singleNumber)/10;
+  if (40 < singleNumber < 50) {
+    y = (100 - singleNumber)/10;
+    x = singleNumber - 91 + 10 * y;
   }
-  if (40 < singleNumber < 30) {
-    x = (100 - singleNumber)/10;
+  if (30 < singleNumber < 40) {
+    y = (100 - singleNumber)/10;
+    x = singleNumber - 111 + 10 * y;
   }
-  if (30 < singleNumber < 20) {
-    x = (100 - singleNumber)/10;
+  if (20 < singleNumber < 30) {
+    y = (100 - singleNumber)/10;
+    x = singleNumber - 91 + 10 * y;
   }
-  if (20 < singleNumber < 10) {
-    x = (100 - singleNumber)/10;
+  if (10 < singleNumber < 20) {
+    y = (100 - singleNumber)/10;
+    x = singleNumber - 111 + 10 * y;
   }
-  if (10 < singleNumber < 0) {
-    x = (100 - singleNumber)/10;
+  if (0 < singleNumber < 10) {
+    y = (100 - singleNumber)/10;
+    x = singleNumber - 91 + 10 * y;
   }
+  return y;
   return x;
 }
