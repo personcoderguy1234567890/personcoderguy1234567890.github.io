@@ -26,6 +26,7 @@ let newPosition;
 let y;
 let x;
 let singleNumber;
+let startingPosition;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -43,9 +44,8 @@ function draw() {
 }
 
 function s () {
-  let startingPosition;
-  grid[y][x] = singleNumber;
-  grid[9][0] = startingPosition;
+  startingPosition = 1;
+  grid[y][x] = startingPosition;
   
   if (diceNum === 1) {
     singleNumber+= 1;
@@ -65,9 +65,6 @@ function s () {
   else if (diceNum === 6) {
     singleNumber+= 6;
   }
-
-  singleNumber = playerOnePosition;
-  singleNumber = 0;
 }
 
 function displayGrid() {
@@ -76,7 +73,7 @@ function displayGrid() {
       if (grid[y][x] === 0) {
         rect(x*cellSize, y*cellSize, cellSize, cellSize);
       } 
-      else if (grid[y][x] === newPosition) {  
+      else if (grid[y][x] === singleNumber) {  
         image(playerOneImage, x*cellSize, y*cellSize, cellSize/2, cellSize);
       } 
     } 
@@ -138,10 +135,6 @@ function dice() {
   }
   else if (diceNum === 6) {
     return image(diceSix, width/2, height/2, 200, 200);
-  }
-
-  for (let i = 1; i < 7; i++) {
-    return image(diceOne, width/2, height/2, 50, 50);
   }
 }
 
