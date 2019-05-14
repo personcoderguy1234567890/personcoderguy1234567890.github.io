@@ -27,6 +27,7 @@ let y;
 let x;
 let singleNumber;
 let startingPosition;
+let turns;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -43,9 +44,9 @@ function draw() {
   convertToSingleNum();
 }
 
-function s () {
-  startingPosition = 1;
-  grid[y][x] = startingPosition;
+function moving() {
+  singleNumber = 1;
+  grid[y][x] = singleNumber;
   
   if (diceNum === 1) {
     singleNumber+= 1;
@@ -65,6 +66,8 @@ function s () {
   else if (diceNum === 6) {
     singleNumber+= 6;
   }
+
+  singleNumber = 0;
 }
 
 function displayGrid() {
@@ -112,31 +115,53 @@ let playerOneStarting;
 
 
 function dice() {
-  grid[9][0] = 1;
+  turns = [1, 2];
   
-  turns = [1, 2];  
-  
-  diceNum = random(6);
-  if (diceNum === 1) { 
-    return image(diceOne, width/2, height/2, 50, 50);
-  }
-  else if (diceNum === 2) {
-    return image(diceTwo, width/2, height/2, 200, 200);
-  }
-  else if (diceNum === 3) {
-    newPosition = grid[y][x + 3];
-    return image(diceThree, width/2, height/2, 200, 200);
-  }
-  else if (diceNum === 4) {
-    return image(diceFour, width/2, height/2, 200, 200);
-  }
-  else if (diceNum === 5) {
-    return image(diceFive, width/2, height/2, 200, 200);
-  }
-  else if (diceNum === 6) {
-    return image(diceSix, width/2, height/2, 200, 200);
-  }
-}
+  if (turns === 1) {
+    diceNum = random(6);
+    if (diceNum === 1) { 
+      return image(diceOne, width/2, height/2, 50, 50);
+    }
+    else if (diceNum === 2) {
+      return image(diceTwo, width/2, height/2, 200, 200);
+    }
+    else if (diceNum === 3) {
+      newPosition = grid[y][x + 3];
+      return image(diceThree, width/2, height/2, 200, 200);
+    }
+    else if (diceNum === 4) {
+      return image(diceFour, width/2, height/2, 200, 200);
+    }
+    else if (diceNum === 5) {
+      return image(diceFive, width/2, height/2, 200, 200);
+    }
+    else if (diceNum === 6) {
+      return image(diceSix, width/2, height/2, 200, 200);
+    }
+  else if (turns === 2) {
+    diceNum = random(6);
+    if (diceNum === 1) { 
+      return image(diceOne, width/2, height/2, 50, 50);
+    }
+    else if (diceNum === 2) {
+      return image(diceTwo, width/2, height/2, 200, 200);
+    }
+    else if (diceNum === 3) {
+      newPosition = grid[y][x + 3];
+      return image(diceThree, width/2, height/2, 200, 200);
+    }
+    else if (diceNum === 4) {
+      return image(diceFour, width/2, height/2, 200, 200);
+    }
+    else if (diceNum === 5) {
+      return image(diceFive, width/2, height/2, 200, 200);
+    }
+    else if (diceNum === 6) {
+      return image(diceSix, width/2, height/2, 200, 200);
+    } 
+  }   
+} 
+
 
 function convertToSingleNum(x, y) {
   if (y % 2 === 1) {
