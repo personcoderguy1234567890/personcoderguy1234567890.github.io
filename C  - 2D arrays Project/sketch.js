@@ -1,9 +1,6 @@
 // Snakes and Ladders
 // Raamish Humayun
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// May 14, 2019
 
 
 let gridSize = 10;
@@ -44,6 +41,7 @@ function draw() {
   convertToSingleNum();
 }
 
+// moves the player by the dice number
 function moving() {
   singleNumber = 1;
   grid[y][x] = singleNumber;
@@ -100,7 +98,7 @@ function create2DArray(cols, rows) {
 }
 
 
-
+// loads the images for dies and player 1
 function preload() {
   diceSix = loadImage("assets/dice_six.png");
   diceFive = loadImage("assets/dice_five.png");
@@ -116,7 +114,7 @@ let playerOneStarting;
 
 function dice() {
   turns = [1, 2];
-  
+  // displays the dice for player 1 
   if (turns === 1) {
     diceNum = random(6);
     if (diceNum === 1) { 
@@ -138,6 +136,7 @@ function dice() {
     else if (diceNum === 6) {
       return image(diceSix, width/2, height/2, 200, 200);
     }
+  // would displays the dice for player 2 if there was a player 2
   else if (turns === 2) {
     diceNum = random(6);
     if (diceNum === 1) { 
@@ -162,7 +161,7 @@ function dice() {
   }   
 } 
 
-
+// converts a x and y coordinate in the 2D array into a single number
 function convertToSingleNum(x, y) {
   if (y % 2 === 1) {
     singleNumber = 10 * (y - 9) + (x + 1);
@@ -173,7 +172,7 @@ function convertToSingleNum(x, y) {
   return singleNumber;
 }
 
-
+// converts the single number back into an x and y
 function convertToXY(singleNumber) {
   if (90 < singleNumber < 100) {
     y = (100 - singleNumber)/10;
