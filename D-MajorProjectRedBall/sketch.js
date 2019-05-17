@@ -41,7 +41,7 @@ function draw() {
 // }
 
 function ball() {
-  fill(red);
+  fill("red");
   ellipse(width/2, height/2, 400, 400);
 
 }
